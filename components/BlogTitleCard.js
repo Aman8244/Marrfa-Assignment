@@ -11,7 +11,7 @@ const BlogTitleCard = ({ id, title, summary, author, category, published_date })
                     {summary}
                 </p>
                 <div className='py-2 flex flex-row space-x-10'>
-                    <div className='font-semibold'>
+                    <div className='font-semibold w-[50%] md:w-[70%]'>
                         {author}
                     </div>
                     <div className='flex flex-col'>
