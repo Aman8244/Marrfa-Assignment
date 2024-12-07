@@ -34,9 +34,9 @@ export default function BlogsClient({ data }) {
     };
 
     return (
-        <div id={`${pageNo}`} className='mx-[1rem] md:mx-0'>
+        <div id={`${pageNo}`} className='px-[1rem] bg-[#F1F0E8] md:mx-0'>
             <form onSubmit={handleSearch} className='w-full'>
-                <div className="flex flex-col w-full md:flex-row  space-y-4 md:space-y-0 md:space-x-2  py-8">
+                <div className="flex flex-col w-full md:items-center md:justify-center md:flex-row  space-y-4 md:space-y-0 md:space-x-2  py-8">
                     <input
                         onChange={(e) => setSearchInput(e.target.value)}
                         id="searchbar"
@@ -56,7 +56,7 @@ export default function BlogsClient({ data }) {
                             </option>
                         ))}
                     </select>
-                    <button type="submit" className="btn">
+                    <button type="submit" className="btn bg-[#89A8B2]">
                         <img
                             width="35"
                             height="30"
@@ -72,7 +72,7 @@ export default function BlogsClient({ data }) {
                         <BlogTitleCard {...el} />
                     </div>
                 ))}
-                <div className="join grid grid-cols-2 my-12">
+                <div className="join grid grid-cols-2 py-12">
                     <button
                         className="join-item btn btn-outline"
                         disabled={pageNo === 1}
