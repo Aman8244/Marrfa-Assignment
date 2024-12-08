@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import BlogTitleCard from './BlogTitleCard';
 import axios from 'axios';
+import { useRouter } from 'next/navigation';
 
 const BlogsClient = () => {
     const [data, setData] = useState();
@@ -11,7 +12,7 @@ const BlogsClient = () => {
     const [searchInput, setSearchInput] = useState("");
     const [filterCategory, setFilterCategory] = useState("");
     const [loading, setLoading] = useState(true);
-
+    const router = useRouter()
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -64,7 +65,7 @@ const BlogsClient = () => {
     };
 
     return (
-        <div className='px-[1rem] min-h-screen bg-[#F1F0E8] md:mx-0'>
+        <div id={`top`} className='px-[1rem] min-h-screen bg-[#F1F0E8] md:mx-0'>
             <form onSubmit={handleSearch} className='w-full'>
                 <div className="flex flex-col w-full md:items-center md:justify-center md:flex-row  space-y-4 md:space-y-0 md:space-x-2  py-8">
                     <input
@@ -80,7 +81,7 @@ const BlogsClient = () => {
                         onChange={(e) => setFilterCategory(e.target.value)}
                     >
                         <option value="">All Categories</option>
-                        {[...new Set(data?.blogdata.map(blog => blog.category))].map((category, index) => (
+                        {[...new Set(data?.blogdata?.map(blog => blog.category))].map((category, index) => (
                             <option key={index} value={category}>
                                 {category}
                             </option>
@@ -109,6 +110,7 @@ const BlogsClient = () => {
                         onClick={(e) => {
                             e.preventDefault();
                             setPageNo((prev) => Math.max(1, prev - 1));
+                            router.push("#top")
                         }}
                     >
                         Previous
@@ -118,6 +120,7 @@ const BlogsClient = () => {
                         onClick={(e) => {
                             e.preventDefault();
                             setPageNo((prev) => prev + 1);
+                            router.push("#top")
                         }}
                         disabled={tempData?.blogdata?.length===0}
                     >
