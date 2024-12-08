@@ -1,19 +1,27 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import BlogTitleCard from './BlogTitleCard';
 import { useRouter } from 'next/navigation';
 
-export default function BlogsClient({ data }) {
+const BlogsClient = () => {
+    const [data,setData] = useState();
     const [pageNo, setPageNo] = useState(1);
     const router = useRouter();
     const [tempData, setTempData] = useState(data);
     const [searchInput, setSearchInput] = useState("");
     const [filterCategory, setFilterCategory] = useState("");
-
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await axios.get(`${process.env.Domain_URL}/api/fakedata/get`);
+            setData(response.data);
+            setTempData(response.data);
+        }
+        fetchData();
+    })
     const handleSearch = (e) => {
         e.preventDefault();
-        let filteredData = data.blogdata;
+        let filteredData = data?.blogdata;
 
         if (searchInput.trim() !== "") {
             filteredData = filteredData.filter((blog) =>
@@ -28,7 +36,7 @@ export default function BlogsClient({ data }) {
             );
         }
 
-        
+
 
         setTempData({ blogdata: filteredData });
     };
@@ -50,7 +58,7 @@ export default function BlogsClient({ data }) {
                         onChange={(e) => setFilterCategory(e.target.value)}
                     >
                         <option value="">All Categories</option>
-                        {[...new Set(data.blogdata.map(blog => blog.category))].map((category, index) => (
+                        {[...new Set(data?.blogdata.map(blog => blog.category))].map((category, index) => (
                             <option key={index} value={category}>
                                 {category}
                             </option>
@@ -67,7 +75,7 @@ export default function BlogsClient({ data }) {
                 </div>
             </form>
             <div className="w-full md:w-[60%] md:mx-[20%] ">
-                {tempData.blogdata.slice(pageNo * 20 - 20, pageNo * 20).map((el, key) => (
+                {tempData?.blogdata?.slice(pageNo * 20 - 20, pageNo * 20).map((el, key) => (
                     <div key={key} className="m-0 p-0">
                         <BlogTitleCard {...el} />
                     </div>
@@ -97,3 +105,4 @@ export default function BlogsClient({ data }) {
         </div>
     );
 }
+export default BlogsClient

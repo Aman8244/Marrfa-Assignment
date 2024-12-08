@@ -1,6 +1,7 @@
 import React from 'react'
 
 const BlogTitleCard = ({ id, title, summary, author, category, published_date }) => {
+    
     return (
         <div key={id}>
             <div className=''>
