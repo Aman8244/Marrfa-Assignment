@@ -103,7 +103,7 @@ const BlogsClient = () => {
                         <BlogTitleCard {...el} />
                     </div>
                 ))}
-                <div className="flex flex-row  space-x-12 py-12">
+                <div className="flex flex-row space-x-6  md:space-x-12 py-12">
                     <button
                         className=" w-[45%] btn btn-outline"
                         disabled={pageNo === 1}
