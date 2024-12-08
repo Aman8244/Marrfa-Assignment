@@ -2,13 +2,11 @@
 
 import React, { useEffect, useState } from 'react';
 import BlogTitleCard from './BlogTitleCard';
-import { useRouter } from 'next/navigation';
 import axios from 'axios';
 
 const BlogsClient = () => {
     const [data, setData] = useState();
     const [pageNo, setPageNo] = useState(1);
-    const router = useRouter();
     const [tempData, setTempData] = useState(data);
     const [searchInput, setSearchInput] = useState("");
     const [filterCategory, setFilterCategory] = useState("");
@@ -66,7 +64,7 @@ const BlogsClient = () => {
     };
 
     return (
-        <div id={`${pageNo}`} className='px-[1rem] min-h-screen bg-[#F1F0E8] md:mx-0'>
+        <div className='px-[1rem] min-h-screen bg-[#F1F0E8] md:mx-0'>
             <form onSubmit={handleSearch} className='w-full'>
                 <div className="flex flex-col w-full md:items-center md:justify-center md:flex-row  space-y-4 md:space-y-0 md:space-x-2  py-8">
                     <input
@@ -110,7 +108,6 @@ const BlogsClient = () => {
                         disabled={pageNo === 1}
                         onClick={() => {
                             setPageNo((prev) => Math.max(1, prev - 1));
-                            router.push(`/#${pageNo - 1}`);
                         }}
                     >
                         Previous
@@ -119,7 +116,7 @@ const BlogsClient = () => {
                         className="join-item btn btn-outline"
                         onClick={() => {
                             setPageNo((prev) => prev + 1);
-                            router.push(`/#${pageNo + 1}`);
+                            
                         }}
                     >
                         Next
