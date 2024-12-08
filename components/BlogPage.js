@@ -122,7 +122,7 @@ const BlogsClient = () => {
                             setPageNo((prev) => prev + 1);
                             router.push("#top")
                         }}
-                        disabled={tempData?.blogdata?.length===0}
+                        disabled={tempData?.blogdata?.length===0 || tempData?.blogdata?.length/20<=pageNo}
                     >
                         Next
                     </button>
