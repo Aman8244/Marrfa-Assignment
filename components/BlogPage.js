@@ -6,20 +6,43 @@ import { useRouter } from 'next/navigation';
 import axios from 'axios';
 
 const BlogsClient = () => {
-    const [data,setData] = useState();
+    const [data, setData] = useState();
     const [pageNo, setPageNo] = useState(1);
     const router = useRouter();
     const [tempData, setTempData] = useState(data);
     const [searchInput, setSearchInput] = useState("");
     const [filterCategory, setFilterCategory] = useState("");
+    const [loading, setLoading] = useState(true);
+
     useEffect(() => {
         const fetchData = async () => {
-            const response = await axios.get(`/api/fakedata/get`);
-            setData(response.data);
-            setTempData(response.data);
-        }
+            try {
+                const response = await axios.get(`/api/fakedata/get`);
+                setData(response.data);
+                setTempData(response.data);
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
         fetchData();
-    })
+    }, []);
+
+    if (loading) {
+        return <div className='px-[1rem] min-h-screen bg-[#F1F0E8] md:mx-0'>
+            <div className="flex flex-col gap-4 items-center justify-center w-full py-12">
+                <div className="skeleton h-32 w-[70%]"></div>
+                <div className="skeleton h-4 w-[70%]"></div>
+                <div className="skeleton h-4 w-[70%]"></div>
+                <div className="skeleton h-4 w-[70%]"></div>
+                <div className="skeleton h-4 w-[70%]"></div>
+                <div className="skeleton h-4 w-[70%]"></div>
+                <div className="skeleton h-4 w-[70%]"></div>
+                <div className="skeleton h-4 w-[70%]"></div>
+            </div>
+        </div>;
+    }
     const handleSearch = (e) => {
         e.preventDefault();
         let filteredData = data?.blogdata;
