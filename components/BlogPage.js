@@ -105,7 +105,7 @@ const BlogsClient = () => {
                 ))}
                 <div className="flex flex-row space-x-6  md:space-x-12 py-12">
                     <button
-                        className=" w-[45%] btn btn-outline"
+                        className=" w-[45%] bg-gray-500 text-white border border-white rounded-lg min-h-[3rem] disabled:bg-gray-300 "
                         disabled={pageNo === 1}
                         onClick={(e) => {
                             e.preventDefault();
@@ -116,7 +116,7 @@ const BlogsClient = () => {
                         Previous
                     </button>
                     <button
-                        className="w-[45%]  btn btn-outline"
+                        className="w-[45%] bg-gray-500 text-white border border-white rounded-lg min-h-[3rem] disabled:bg-gray-300"
                         onClick={(e) => {
                             e.preventDefault();
                             setPageNo((prev) => prev + 1);
