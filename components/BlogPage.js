@@ -117,6 +117,7 @@ const BlogsClient = () => {
                         onClick={() => {
                             setPageNo((prev) => prev + 1);
                         }}
+                        disabled={tempData?.blogdata?.length===0}
                     >
                         Next
                     </button>
