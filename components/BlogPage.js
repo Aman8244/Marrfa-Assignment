@@ -102,9 +102,9 @@ const BlogsClient = () => {
                         <BlogTitleCard {...el} />
                     </div>
                 ))}
-                <div className="join grid grid-cols-2 py-12">
+                <div className="join grid grid-cols-2 space-x-12 py-12">
                     <button
-                        className="join-item btn btn-outline"
+                        className=" btn btn-outline"
                         disabled={pageNo === 1}
                         onClick={() => {
                             setPageNo((prev) => Math.max(1, prev - 1));
@@ -113,10 +113,9 @@ const BlogsClient = () => {
                         Previous
                     </button>
                     <button
-                        className="join-item btn btn-outline"
+                        className=" btn btn-outline"
                         onClick={() => {
                             setPageNo((prev) => prev + 1);
-                            
                         }}
                     >
                         Next
