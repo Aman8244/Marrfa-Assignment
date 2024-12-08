@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import BlogTitleCard from './BlogTitleCard';
 import { useRouter } from 'next/navigation';
+import axios from 'axios';
 
 const BlogsClient = () => {
     const [data,setData] = useState();
@@ -13,7 +14,7 @@ const BlogsClient = () => {
     const [filterCategory, setFilterCategory] = useState("");
     useEffect(() => {
         const fetchData = async () => {
-            const response = await axios.get(`${process.env.Domain_URL}/api/fakedata/get`);
+            const response = await axios.get(`/api/fakedata/get`);
             setData(response.data);
             setTempData(response.data);
         }
@@ -42,7 +43,7 @@ const BlogsClient = () => {
     };
 
     return (
-        <div id={`${pageNo}`} className='px-[1rem] bg-[#F1F0E8] md:mx-0'>
+        <div id={`${pageNo}`} className='px-[1rem] min-h-screen bg-[#F1F0E8] md:mx-0'>
             <form onSubmit={handleSearch} className='w-full'>
                 <div className="flex flex-col w-full md:items-center md:justify-center md:flex-row  space-y-4 md:space-y-0 md:space-x-2  py-8">
                     <input
