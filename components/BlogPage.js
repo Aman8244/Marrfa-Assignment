@@ -103,9 +103,9 @@ const BlogsClient = () => {
                         <BlogTitleCard {...el} />
                     </div>
                 ))}
-                <div className="join grid grid-cols-2 space-x-12 py-12">
+                <div className="flex flex-row  space-x-12 py-12">
                     <button
-                        className=" btn btn-outline"
+                        className=" w-[45%] btn btn-outline"
                         disabled={pageNo === 1}
                         onClick={(e) => {
                             e.preventDefault();
@@ -116,7 +116,7 @@ const BlogsClient = () => {
                         Previous
                     </button>
                     <button
-                        className=" btn btn-outline"
+                        className="w-[45%]  btn btn-outline"
                         onClick={(e) => {
                             e.preventDefault();
                             setPageNo((prev) => prev + 1);
