@@ -106,7 +106,8 @@ const BlogsClient = () => {
                     <button
                         className=" btn btn-outline"
                         disabled={pageNo === 1}
-                        onClick={() => {
+                        onClick={(e) => {
+                            e.preventDefault();
                             setPageNo((prev) => Math.max(1, prev - 1));
                         }}
                     >
@@ -114,7 +115,8 @@ const BlogsClient = () => {
                     </button>
                     <button
                         className=" btn btn-outline"
-                        onClick={() => {
+                        onClick={(e) => {
+                            e.preventDefault();
                             setPageNo((prev) => prev + 1);
                         }}
                         disabled={tempData?.blogdata?.length===0}
